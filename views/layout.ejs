@@ -7,11 +7,24 @@
     <script src="/js/app.js" charset="utf-8"></script>
   </head>
   <body>
-    <% for(const type in messages) { %>
-      <div class="<%= type %>">
-        <h5><%= messages[type] %></h5>
-      </div>
-    <% } %>
+    <div class="jumbotron">
+      <a href="/designs"  class="btn homepage">All the Designs</a>
+      <% if(locals.isAuthenticated) { %>
+        <a class="btn homepage" href="/logout">Logout</a>
+      <% } else { %>
+      <a href="/login" class="btn homepage">Login</a>
+      <a href="/register"  class="btn homepage">Register</a>
+      <% } %>
+      <h1>Big Stitch Up</h1>
+    </div>
+    <div class="container">
+      <% for(const type in messages) { %>
+        <div class="<%= type %>">
+          <h5><%= messages[type] %></h5>
+        </div>
+      <% } %>
+    </div>
+
     <main>
       <%- body %>
     </main>

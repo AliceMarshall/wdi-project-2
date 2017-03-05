@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <% if(locals.isAuthenticated && design.ownedBy(user)) { %>
+      <a href="/designs/<%= design.id %>/edit" class="btn show-btn">Edit Design</a>
+      <form method="POST" action="/designs/<%= design.id %>" class="show-btn">
+        <input type="hidden" name="_method" value="DELETE">
+        <button class="btn">Delete Design</button>
+      </form>
+    <% } %>
+  </div>
+  <div class="row">
+    <img src="<%= design.image %>" alt="<%= design.name %>" class="show-image">
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2><%= design.name %></h2>
+      <h4><%= design.technique %></h4>
+      <p>
+        <%= design.size %>
+      </p>
+      <p>
+        <% while(design.difficulty--) { %> &star; <% } %>
+      </p>
+    </div>
+
+    <section class="col-md-6">
+      <h2>Comments</h2>
+      <% design.comments.forEach((comment) => { %>
+        <p><%= comment.content %></p>
+        <small><%= comment.createdBy.username %></small>
+
+        <% if(locals.isAuthenticated && comment.ownedBy(user)) { %>
+          <form method="POST" action="/designs/<%= design.id %>/comments/<%= comment.id %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <button>Delete</button>
+          </form>
+        <% } %>
+
+      <% }) %>
+    </section>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+    </div>
+    <div class="col-md-6">
+      <% if(locals.isAuthenticated) { %>
+        <section>
+          <h4>Leave a comment</h4>
+          <form method="POST" action="/designs/<%= design.id %>/comments">
+            <textarea name="content" id="content" placeholder="Comment"></textarea></br>
+            <button class="btn">Leave a comment</button>
+          </form>
+        </section>
+      <% } %>
+    </div>
+  </div>
+</div>

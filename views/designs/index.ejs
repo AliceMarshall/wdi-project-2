@@ -1,0 +1,18 @@
+<div class="container">
+  <% if(locals.isAuthenticated) { %>
+    <a href="/designs/new" class="btn">Add a new Design</a>
+  <% } %>
+  <div class="row">
+    <% designs.forEach((design) => { %>
+      <div class="col-md-4">
+        <a href="/designs/<%= design.id %>">
+          <img src="<%= design.image %>" alt="<%= design.name %>" class="all-images">
+          <h2><%= design.name %></h2>
+        </a>
+        <h4><%= design.technique %></h4>
+        <p><%= design.size %></p>
+        <p><% while(design.difficulty--) { %> &difficulty; <% } %></p>
+      </div>
+    <% }) %>
+  </div>
+</div>

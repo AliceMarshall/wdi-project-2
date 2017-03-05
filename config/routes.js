@@ -2,18 +2,18 @@ const router = require('express').Router();
 const registrations = require('../controllers/registrations');
 const sessions = require('../controllers/sessions');
 const secureRoute = require('../lib/secureRoute');
-const users = require('../controllers/users');
+const designs = require('../controllers/designs');
 const oauth = require('../controllers/oauth');
-const upload = require('../lib/upload');
+// const upload = require('../lib/upload');
 
 router.get('/', (req, res) => res.render('statics/index'));
 
-router.route('/user/:id')
-  .get(users.index)
-  .post(secureRoute, users.create);
+router.route('/designs')
+  .get(designs.index)
+  .post(secureRoute, designs.create);
 
-router.route('/user/:id/newDesign')
-  .get(secureRoute, users.new);
+router.route('/designs/new')
+  .get(secureRoute, designs.new);
 
 router.route('/designs/:id')
   .get(designs.show)

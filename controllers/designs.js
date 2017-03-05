@@ -29,7 +29,7 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next) {
   Design
     .findById(req.params.id)
-    .populate('comments.createdBy')
+    .populate('createdBy comments.createdBy')
     .exec()
     .then((design) => {
       if(!design) return res.notFound();
