@@ -14,7 +14,7 @@ User
   .create([{
     firstName: 'Alice',
     lastName: 'Marshall',
-    image: 'https://avatars3.githubusercontent.com/u/17042311?v=3&s=460',
+    // image: 'https://avatars3.githubusercontent.com/u/17042311?v=3&s=460',
     username: 'AliceMarshall',
     email: 'marshall.alice92@gmail.com',
     password: 'password',
