@@ -1,10 +1,23 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const imageSchema = new mongoose.Schema({
+  filename: { type: String }
+});
+
+imageSchema.virtual('src')
+  .get(function getImageSRC(){
+    if(!this.filename) return null;
+    return `https://s3-eu-west-1.amazonaws.com/wdi-ldn-project-2/${this.filename}`;
+  });
+
 const userSchema = new mongoose.Schema({
   username: { type: String },
   email: { type: String },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  profileImage: { type: String },
+  image: [ imageSchema ],
+  githubId: { type: String }
 });
 
 userSchema

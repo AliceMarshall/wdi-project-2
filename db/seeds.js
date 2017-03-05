@@ -25,7 +25,7 @@ User
     return Design
       .create([{
         name: 'Classic Bobble Hat',
-        technique: '',
+        technique: 'Knitting',
         image: '',
         difficulty: 3,
         size: '5mm Circular Needles',
