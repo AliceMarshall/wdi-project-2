@@ -19,7 +19,7 @@ function createRoute(req, res, next) {
 
   Design
     .create(req.body)
-    .then(() => res.redirect('/designs'))
+    .then(() => res.redirect(`/users/${req.user.id}/designs`))
     .catch((err) => {
       if(err.name === 'ValidationError') return res.badRequest(`/designs/${req.params.id}/edit`, err.toString());
       next(err);

@@ -17,7 +17,6 @@ const designSchema = new mongoose.Schema({
   image: { type: String },
   difficulty: { type: Number },
   size: { type: String },
-  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   comments: [ commentSchema ]
 });
 

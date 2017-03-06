@@ -3,28 +3,38 @@ const registrations = require('../controllers/registrations');
 const sessions = require('../controllers/sessions');
 const secureRoute = require('../lib/secureRoute');
 const designs = require('../controllers/designs');
+const users = require('../controllers/users');
+const oauth = require('../controllers/oauth');
+// const upload = require('../lib/upload');
 
 router.get('/', (req, res) => res.render('statics/index'));
+
+router.route('/users')
+  .get(users.indexUser);
+
+router.route('/users/:id')
+  .get(users.showUser)
+  .get(designs.show);
 
 router.route('/designs')
   .get(designs.index)
   .post(secureRoute, designs.create);
 
-router.route('/designs/new')
+router.route('/users/:id/designs/new')
   .get(secureRoute, designs.new);
 
-router.route('/designs/:id')
+router.route('/users/:id/designs/:designId')
   .get(designs.show)
   .put(secureRoute, designs.update)
   .delete(secureRoute, designs.delete);
 
-router.route('/designs/:id/edit')
+router.route('/users/:id/designs/:designId/edit')
   .get(secureRoute, designs.edit);
 
-router.route('/designs/:id/comments')
+router.route('/users/:id/designs/:designId/comments')
   .post(secureRoute, designs.createComment);
 
-router.route('/designs/:id/comments/:commentId')
+router.route('/users/:id/designs/:designId/comments/:commentId')
   .delete(secureRoute, designs.deleteComment);
 
 router.route('/register')
@@ -37,6 +47,9 @@ router.route('/login')
 
 router.route('/logout')
   .get(sessions.delete);
+
+router.route('/oauth/github')
+  .get(oauth.github);
 
 router.all('*', (req, res) => res.notFound());
 

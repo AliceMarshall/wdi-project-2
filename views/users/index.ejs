@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <% users.forEach((user) => { %>
+      <div class="col-md-4">
+      <a href="/users/<%= user.id %>">
+        <h2><%= user.username %></h2>
+      </a>
+      </div>
+    <% }) %>
+  </div>
+</div>

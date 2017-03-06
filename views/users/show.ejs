@@ -1,0 +1,5 @@
+<h1><%= user.username %></h1>
+
+<% user.designs.forEach((design) => { %>
+  <img src="<%= design.image %>" alt="<%= design.name %>" class="show-image">
+<% }) %>
