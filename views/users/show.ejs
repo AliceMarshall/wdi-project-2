@@ -1,5 +1,15 @@
 <h1><%= user.username %></h1>
 
+<% if(locals.isAuthenticated && user.ownedBy(user)) { %>
+  <a href="/users/<%= user.id %>/edit">Edit Account</a>
+  <form method="POST" action="/users/<%= user.id %>" class="show-btn">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="btn">Delete User</button>
+  </form>
+<% } %>
+
 <% user.designs.forEach((design) => { %>
-  <img src="<%= design.image %>" alt="<%= design.name %>" class="show-image">
+  <a href="/users/<%= user.id %>/design/<%= design.id %>">
+    <img src="<%= design.image %>" alt="<%= design.name %>" class="show-image">
+  </a>
 <% }) %>

@@ -14,19 +14,16 @@ router.route('/users')
 
 router.route('/users/:id')
   .get(users.showUser)
-  .get(designs.show);
+  .put(secureRoute, users.updateUser)
+  .delete(secureRoute, users.deleteUser);
 
-router.route('/designs')
-  .get(designs.index)
-  .post(secureRoute, designs.create);
-
-router.route('/users/:id/designs/new')
-  .get(secureRoute, designs.new);
+router.route('/users/:id/edit')
+  .get(secureRoute, users.editUser);
 
 router.route('/users/:id/designs/:designId')
-  .get(designs.show)
-  .put(secureRoute, designs.update)
-  .delete(secureRoute, designs.delete);
+  .get(users.showDesign);
+  // .put(secureRoute, designs.update)
+  // .delete(secureRoute, designs.delete);
 
 router.route('/users/:id/designs/:designId/edit')
   .get(secureRoute, designs.edit);

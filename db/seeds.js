@@ -14,7 +14,7 @@ User
   .create([{
     firstName: 'Alice',
     lastName: 'Marshall',
-    // image: 'https://avatars3.githubusercontent.com/u/17042311?v=3&s=460',
+    profileImage: 'https://avatars3.githubusercontent.com/u/17042311?v=3&s=460',
     username: 'AliceMarshall',
     email: 'marshall.alice92@gmail.com',
     password: 'password',
@@ -31,7 +31,7 @@ User
   }, {
     firstName: 'Hannah',
     lastName: 'Marshall',
-    // image: 'https://avatars3.githubusercontent.com/u/17042311?v=3&s=460',
+    profileImage: 'https://scontent.xx.fbcdn.net/v/t1.0-9/14192071_10157521154220151_3305327912080496122_n.jpg?oh=5852027876fada12c8a375153812be53&oe=5931C8F8',
     username: 'HannahMarshall',
     email: 'han@gmail.com',
     password: 'password',
@@ -48,56 +48,6 @@ User
   }])
   .then((users) => {
     console.log(`${users.length} users created`);
-
-    // const design1 = {
-    //   name: 'Classic Bobble Hat',
-    //   technique: 'Knitting',
-    //   image: 'http://www.picaloulou.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/r/i/ribbed-hat-olive.jpg',
-    //   difficulty: 1,
-    //   size: '5mm Circular Needles'
-    // };
-    // const design2 = {
-    //   name: 'Cable Jumper',
-    //   technique: 'Knitting',
-    //   image: 'http://www.knitya.com/wp-content/uploads/2015/11/cable-knit-jumper-3.jpg',
-    //   difficulty: 2,
-    //   size: '4.5mm Circular Needles'
-    // };
-
-    // console.log(design1);
-    // console.log(design2);
-    //
-    // users[0].designs.push(design1);
-    // users[1].designs.push(design2);
-    //
-    // // console.log(users[0]);
-    //
-    // users.forEach((user) => {
-    //   user.save((err, user) => {
-    //     if(err) console.log(err);
-    //     console.log(user);
-    //     return console.log('User was saved', user);
-    //   });
-    // });
-
-    // users[1].save();
-    // return Design
-    //   .create([{
-    //     name: 'Classic Bobble Hat',
-    //     technique: 'Knitting',
-    //     image: 'http://www.picaloulou.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/r/i/ribbed-hat-olive.jpg',
-    //     difficulty: 1,
-    //     size: '5mm Circular Needles',
-    //     createdBy: users[0]
-    //   }, {
-    //     name: 'Cable Jumper',
-    //     technique: 'Knitting',
-    //     image: 'http://www.knitya.com/wp-content/uploads/2015/11/cable-knit-jumper-3.jpg',
-    //     difficulty: 2,
-    //     size: '4.5mm Circular Needles',
-    //     createdBy: users[1]
-    //   }]);
   })
-  // .then((designs) => console.log(`${designs.length} designs created`))
   .catch((err) => console.log(err))
   .finally(() => mongoose.connection.close());
