@@ -1,25 +1,31 @@
 const router = require('express').Router();
 const registrations = require('../controllers/registrations');
 const sessions = require('../controllers/sessions');
-// const secureRoute = require('../lib/secureRoute');
+const secureRoute = require('../lib/secureRoute');
 const designs = require('../controllers/designs');
 
 router.get('/', (req, res) => res.render('statics/index'));
 
 router.route('/designs')
   .get(designs.index)
-  .post(designs.create);
+  .post(secureRoute, designs.create);
 
 router.route('/designs/new')
-  .get(designs.new);
+  .get(secureRoute, designs.new);
 
 router.route('/designs/:id')
   .get(designs.show)
-  .put(designs.update)
-  .delete(designs.delete);
+  .put(secureRoute, designs.update)
+  .delete(secureRoute, designs.delete);
 
 router.route('/designs/:id/edit')
-  .get(designs.edit);
+  .get(secureRoute, designs.edit);
+
+router.route('/designs/:id/comments')
+  .post(secureRoute, designs.createComment);
+
+router.route('/designs/:id/comments/:commentId')
+  .delete(secureRoute, designs.deleteComment);
 
 router.route('/register')
   .get(registrations.new)

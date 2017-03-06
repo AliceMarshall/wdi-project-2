@@ -26,8 +26,8 @@ User
       .create([{
         name: 'Classic Bobble Hat',
         technique: 'Knitting',
-        image: '',
-        difficulty: 3,
+        image: 'http://www.picaloulou.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/r/i/ribbed-hat-olive.jpg',
+        difficulty: 1,
         size: '5mm Circular Needles',
         createdBy: users[0]
       }]);
