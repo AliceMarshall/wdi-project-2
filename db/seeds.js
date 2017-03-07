@@ -26,6 +26,12 @@ User
         image: 'http://www.picaloulou.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/r/i/ribbed-hat-olive.jpg',
         difficulty: 1,
         size: '5mm Circular Needles'
+      }, {
+        name: 'Cable Jumper',
+        technique: 'Knitting',
+        image: 'http://www.knitya.com/wp-content/uploads/2015/11/cable-knit-jumper-3.jpg',
+        difficulty: 2,
+        size: '4.5mm Circular Needles'
       }
     ]
   }, {

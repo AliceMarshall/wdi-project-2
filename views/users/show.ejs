@@ -1,5 +1,7 @@
 <h1><%= user.username %></h1>
 
+<a href="/users/<%= user.id %>/designs/new">New design</a>
+
 <% if(locals.isAuthenticated && user.ownedBy(user)) { %>
   <a href="/users/<%= user.id %>/edit">Edit Account</a>
   <form method="POST" action="/users/<%= user.id %>" class="show-btn">
@@ -9,7 +11,7 @@
 <% } %>
 
 <% user.designs.forEach((design) => { %>
-  <a href="/users/<%= user.id %>/design/<%= design.id %>">
+  <a href="/users/<%= user.id %>/designs/<%= design.id %>">
     <img src="<%= design.image %>" alt="<%= design.name %>" class="show-image">
   </a>
 <% }) %>

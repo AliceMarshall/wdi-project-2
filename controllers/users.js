@@ -61,22 +61,76 @@ function deleteRoute(req, res, next) {
     .catch(next);
 }
 
-function showDesignRoute(req, res, next) {
+function newDesignRoute(req, res, next) {
   User
     .findById(req.params.id)
-    // .populate('createdBy designs.createdBy')
     .exec()
     .then((user) => {
-      if(!user) return res.notFound();
-      return User
-              .find({createdBy: user.designs.id})
-              .exec()
-              .then((design) => {
-                res.render('designs/show', { user, design });
-              });
+      return res.render('designs/new', { user });
     })
     .catch(next);
 }
+
+function createDesignRoute(req, res, next) {
+  req.body.createdBy = req.user;
+
+  User
+    .findById(req.params.id)
+    .exec()
+    .then((user) => {
+      if(!user) return res.notFound();
+
+      user.designs.push(req.body); // create an embedded record
+      return user.save();
+    })
+    .then((user) => res.redirect(`/users/${user.id}`))
+    .catch(next);
+}
+
+function showDesignRoute(req, res, next) {
+  User
+    .findById(req.params.id)
+    .exec()
+    .then((user) => {
+      if(!user) return res.notFound();
+      const design = user.designs.id(req.params.designId);
+      res.render('designs/show', { user, design });
+    })
+    .catch(next);
+}
+
+function editDesignRoute(req, res, next) {
+  User
+    .findById(req.params.id)
+    .exec()
+    .then((user) => {
+      const design = user.designs.id(req.params.designId);
+      return res.render('designs/edit', { user, design });
+    })
+    .catch(next);
+}
+
+function updateDesignRoute(req, res, next) {
+  User
+    .findById(req.params.id)
+    .exec()
+    .then((user) => {
+      if(!user) return res.notFound();
+      const design = user.designs.id(req.params.designId);
+
+      for(const field in req.body) {
+        design[field] = req.body[field];
+      }
+
+      return user.save();
+    })
+    .then(() => res.redirect(`/users/${req.params.id}/designs/${req.params.designId}`))
+    .catch((err) => {
+      if(err.name === 'ValidationError') return res.badRequest(`/users/${req.params.id}/designs/${req.params.id}/edit`, err.toString());
+      next(err);
+    });
+}
+
 
 module.exports = {
   indexUser: indexRoute,
@@ -84,5 +138,9 @@ module.exports = {
   editUser: editRoute,
   updateUser: updateRoute,
   deleteUser: deleteRoute,
-  showDesign: showDesignRoute
+  newDesign: newDesignRoute,
+  createDesign: createDesignRoute,
+  showDesign: showDesignRoute,
+  editDesign: editDesignRoute,
+  updateDesign: updateDesignRoute
 };

@@ -1,7 +1,7 @@
 <div class="container">
   <h2>Edit <%= design.name %></h2>
 
-  <form method="POST" action="/designs/<%= design.id %>">
+  <form method="POST" action="/users/<%= user.id %>/designs/<%= design.id %>">
     <input type="hidden" name="_method" value="PUT">
 
     <div class="form-group">
