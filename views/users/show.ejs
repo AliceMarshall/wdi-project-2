@@ -2,14 +2,6 @@
 
 <a href="/users/<%= user.id %>/designs/new">New design</a>
 
-<% if(locals.isAuthenticated && user.ownedBy(user)) { %>
-  <a href="/users/<%= user.id %>/edit">Edit Account</a>
-  <form method="POST" action="/users/<%= user.id %>" class="show-btn">
-    <input type="hidden" name="_method" value="DELETE">
-    <button class="btn">Delete User</button>
-  </form>
-<% } %>
-
 <% user.designs.forEach((design) => { %>
   <a href="/users/<%= user.id %>/designs/<%= design.id %>">
     <img src="<%= design.image %>" alt="<%= design.name %>" class="show-image">

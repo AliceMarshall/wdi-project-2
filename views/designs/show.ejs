@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
-    <% if(locals.isAuthenticated && design.ownedBy(user)) { %>
-
+    <% if(locals.isAuthenticated && locals.loggedInUser.id === user.id) { %>
+      <p>hello</p>
     <% } %>
   </div>
+
   <a href="/users/<%= user.id %>/designs/<%= design.id %>/edit" class="btn show-btn">Edit Design</a>
   <form method="POST" action="/users/<%= user.id %>/designs/<%= design.id %>" class="show-btn">
     <input type="hidden" name="_method" value="DELETE">

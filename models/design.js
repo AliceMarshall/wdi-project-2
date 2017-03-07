@@ -20,8 +20,4 @@ const designSchema = new mongoose.Schema({
   comments: [ commentSchema ]
 });
 
-designSchema.methods.ownedBy = function ownedBy(user) {
-  return this.createdBy.id === user.id;
-};
-
 module.exports = mongoose.model('Design', designSchema);

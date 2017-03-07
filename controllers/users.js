@@ -60,6 +60,27 @@ function deleteRoute(req, res, next) {
     .then(() => res.redirect('/users'))
     .catch(next);
 }
+//
+// function newImageRoute(req, res) {
+//   res.render('users/newImage');
+// }
+//
+// function createImageRoute(req, res, next) {
+//   if(req.file) req.body.filename = req.file.key;
+//
+//   req.body = Object.assign({}, req.body);
+//
+//   req.user.profileImages.push(req.body);
+//
+//   req.user
+//     .save()
+//     .then(() => res.redirect('/users'))
+//     .catch((err) => {
+//       console.log(err);
+//       if(err.name === 'ValidationError') return res.badRequest('/users/images/new', err.toString());
+//       next(err);
+//     });
+// }
 
 function newDesignRoute(req, res, next) {
   User
@@ -138,6 +159,8 @@ module.exports = {
   editUser: editRoute,
   updateUser: updateRoute,
   deleteUser: deleteRoute,
+  // newProfileImg: newImageRoute,
+  // createProfileImg: createImageRoute,
   newDesign: newDesignRoute,
   createDesign: createDesignRoute,
   showDesign: showDesignRoute,

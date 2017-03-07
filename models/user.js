@@ -19,7 +19,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String },
   profileImage: { type: String },
   designs: [ designSchema.schema ],
-  githubId: { type: String }
+  githubId: { type: Number },
+  facebookId: { type: String }
 });
 
 userSchema.virtual('profileImageSRC')
@@ -37,7 +38,7 @@ userSchema
 
 // lifecycle hook - mongoose middleware
 userSchema.pre('validate', function checkPassword(next) {
-  if(!this.password && !this.githubId) {
+  if(!this.password && !this.githubId && !this.facebookId) {
     this.invalidate('password', 'required');
   }
   if(this.isModified('password') && this._passwordConfirmation !== this.password) this.invalidate('passwordConfirmation', 'does not match');

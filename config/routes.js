@@ -5,7 +5,7 @@ const secureRoute = require('../lib/secureRoute');
 const designs = require('../controllers/designs');
 const users = require('../controllers/users');
 const oauth = require('../controllers/oauth');
-// const upload = require('../lib/upload');
+const upload = require('../lib/upload');
 
 router.get('/', (req, res) => res.render('statics/index'));
 
@@ -14,23 +14,23 @@ router.route('/users')
 
 router.route('/users/:id')
   .get(users.showUser)
-  .put(users.updateUser)
-  .delete(users.deleteUser)
-  .post(users.createDesign);
+  .put(secureRoute, users.updateUser)
+  .delete(secureRoute, users.deleteUser)
+  .post(secureRoute, users.createDesign);
 
 router.route('/users/:id/edit')
-  .get(users.editUser);
+  .get(secureRoute, users.editUser);
 
 router.route('/users/:id/designs/new')
-  .get(users.newDesign);
+  .get(secureRoute, users.newDesign);
 
 router.route('/users/:id/designs/:designId')
   .get(users.showDesign)
-  .put(users.updateDesign);
+  .put(secureRoute, users.updateDesign);
   // .delete(users.deleteDesign);
 
 router.route('/users/:id/designs/:designId/edit')
-  .get(users.editDesign);
+  .get(secureRoute, users.editDesign);
 
 router.route('/users/:id/designs/:designId/comments')
   .post(secureRoute, designs.createComment);
@@ -40,7 +40,7 @@ router.route('/users/:id/designs/:designId/comments/:commentId')
 
 router.route('/register')
   .get(registrations.new)
-  .post(registrations.create);
+  .post(upload.single('profileImage'), registrations.create);
 
 router.route('/login')
   .get(sessions.new)
@@ -51,6 +51,9 @@ router.route('/logout')
 
 router.route('/oauth/github')
   .get(oauth.github);
+
+router.route('/oauth/facebook')
+  .get(oauth.facebook);
 
 router.all('*', (req, res) => res.notFound());
 

@@ -4,10 +4,8 @@ const { dbURI } = require('../config/environment');
 mongoose.Promise = require('bluebird');
 mongoose.connect(dbURI);
 
-// const Design = require('../models/design');
 const User = require('../models/user');
 
-// Design.collection.drop();
 User.collection.drop();
 
 User
