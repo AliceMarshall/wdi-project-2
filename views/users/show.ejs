@@ -4,6 +4,6 @@
 
 <% user.designs.forEach((design) => { %>
   <a href="/users/<%= user.id %>/designs/<%= design.id %>">
-    <img src="<%= design.image %>" alt="<%= design.name %>" class="show-image">
+    <img src="<%= design.imageSRC %>" alt="<%= design.name %>" class="show-image">
   </a>
 <% }) %>

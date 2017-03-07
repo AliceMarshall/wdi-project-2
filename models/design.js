@@ -20,4 +20,11 @@ const designSchema = new mongoose.Schema({
   comments: [ commentSchema ]
 });
 
+designSchema.virtual('imageSRC')
+  .get(function getImageSRC(){
+    if(!this.image) return null;
+    if(this.image.match(/^http/)) return this.image;
+    return `https://s3-eu-west-1.amazonaws.com/wdi-ldn-project-2/${this.image}`;
+  });
+
 module.exports = mongoose.model('Design', designSchema);

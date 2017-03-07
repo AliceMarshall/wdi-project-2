@@ -60,11 +60,35 @@ function deleteRoute(req, res, next) {
     .then(() => res.redirect('/users'))
     .catch(next);
 }
-//
-// function newImageRoute(req, res) {
-//   res.render('users/newImage');
-// }
-//
+
+function newDesignRoute(req, res, next) {
+  User
+    .findById(req.params.id)
+    .exec()
+    .then((user) => {
+      return res.render('designs/new', { user });
+    })
+    .catch(next);
+}
+
+function createDesignRoute(req, res, next) {
+  if(req.file) req.body.image = req.file.key;
+
+  req.body = Object.assign({}, req.body);
+
+  User
+    .findById(req.params.id)
+    .exec()
+    .then((user) => {
+      if(!user) return res.notFound();
+
+      user.designs.push(req.body); // create an embedded record
+      return user.save();
+    })
+    .then((user) => res.redirect(`/users/${user.id}`))
+    .catch(next);
+}
+
 // function createImageRoute(req, res, next) {
 //   if(req.file) req.body.filename = req.file.key;
 //
@@ -81,32 +105,6 @@ function deleteRoute(req, res, next) {
 //       next(err);
 //     });
 // }
-
-function newDesignRoute(req, res, next) {
-  User
-    .findById(req.params.id)
-    .exec()
-    .then((user) => {
-      return res.render('designs/new', { user });
-    })
-    .catch(next);
-}
-
-function createDesignRoute(req, res, next) {
-  req.body.createdBy = req.user;
-
-  User
-    .findById(req.params.id)
-    .exec()
-    .then((user) => {
-      if(!user) return res.notFound();
-
-      user.designs.push(req.body); // create an embedded record
-      return user.save();
-    })
-    .then((user) => res.redirect(`/users/${user.id}`))
-    .catch(next);
-}
 
 function showDesignRoute(req, res, next) {
   User

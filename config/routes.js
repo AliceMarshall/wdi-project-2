@@ -16,7 +16,7 @@ router.route('/users/:id')
   .get(users.showUser)
   .put(secureRoute, users.updateUser)
   .delete(secureRoute, users.deleteUser)
-  .post(secureRoute, users.createDesign);
+  .post(secureRoute, upload.single('image'), users.createDesign);
 
 router.route('/users/:id/edit')
   .get(secureRoute, users.editUser);

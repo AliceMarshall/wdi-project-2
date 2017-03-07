@@ -30,6 +30,8 @@ userSchema.virtual('profileImageSRC')
     return `https://s3-eu-west-1.amazonaws.com/wdi-ldn-project-2/${this.profileImage}`;
   });
 
+
+
 userSchema
   .virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(passwordConfirmation) {
