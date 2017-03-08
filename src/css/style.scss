@@ -7,6 +7,7 @@ $black: #000;
 
 body {
   font-family: 'Dosis', sans-serif;
+  background-color: aliceblue;
 }
 
 .navbar {
@@ -60,22 +61,28 @@ body {
 }
 
 .about-page {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 1)), url('/assets/images/knitting1.jpg');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  background-position: center;
+  background-color: aliceblue;
   height: 100vh;
-  width: 100%;
-  position: absolute;
+  letter-spacing: 1px;
   img {
     margin-top: 10%;
     margin-bottom: 10%;
   }
+  div .col-md-4 {
+    border-right: 1px solid $main-color;
+    padding: 2%;
+    &:last-of-type {
+      border: none;
+    }
+  }
   h5 {
     text-align: justify;
     a {
-      color: $black;
+      color: $main-color;
+      &:hover {
+        color: $brand-color;
+        text-decoration: none;
+      }
     }
   }
 
