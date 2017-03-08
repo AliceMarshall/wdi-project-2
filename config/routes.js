@@ -6,6 +6,7 @@ const designs = require('../controllers/designs');
 const users = require('../controllers/users');
 const oauth = require('../controllers/oauth');
 const upload = require('../lib/upload');
+const hookup = require('../controllers/meetup');
 
 router.get('/', (req, res) => res.render('statics/index'));
 
@@ -37,6 +38,9 @@ router.route('/users/:id/designs/:designId/comments')
 
 router.route('/users/:id/designs/:designId/comments/:commentId')
   .delete(secureRoute, designs.deleteComment);
+
+router.route('/hookup')
+  .get(hookup.groupIndex);
 
 router.route('/register')
   .get(registrations.new)

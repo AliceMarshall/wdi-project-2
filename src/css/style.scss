@@ -1,1 +1,14 @@
 @import "bootstrap/bootstrap";
+
+$white: #fff;
+$brand-color: #8BC0C8;
+$grey: #424242;
+
+.navbar {
+  background-color: $brand-color;
+}
+
+#map {
+  height: 87vh;
+  background-color: $brand-color;
+}
