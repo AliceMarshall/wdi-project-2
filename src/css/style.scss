@@ -4,11 +4,61 @@ $white: #fff;
 $brand-color: #8BC0C8;
 $grey: #424242;
 
+body {
+  font-family: 'Dosis', sans-serif;
+}
+
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 60px;
   background-color: $brand-color;
+  letter-spacing: 1px;
+  font-size: 20px;
+  color: $white;
+  img {
+    height: 50px;
+    float: left;
+  }
+  ul {
+    text-align: center;
+    li {
+      padding: 0px 10px;
+      a {
+          color: white;
+      }
+    }
+  }
+}
+
+.home-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('/assets/images/knitting1.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  h1 {
+    font-size: 70px;
+    color: $white;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 10px;
+    text-align: center;
+
+  }
 }
 
 #map {
-  height: 87vh;
+  height: 100vh;
   background-color: $brand-color;
 }
