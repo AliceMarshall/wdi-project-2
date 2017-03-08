@@ -2,13 +2,13 @@ const router = require('express').Router();
 const registrations = require('../controllers/registrations');
 const sessions = require('../controllers/sessions');
 const secureRoute = require('../lib/secureRoute');
-const designs = require('../controllers/designs');
 const users = require('../controllers/users');
 const oauth = require('../controllers/oauth');
 const upload = require('../lib/upload');
 const hookup = require('../controllers/meetup');
 
 router.get('/', (req, res) => res.render('statics/index'));
+router.get('/about', (req, res) => res.render('about'));
 
 router.route('/users')
   .get(users.indexUser);
@@ -33,11 +33,11 @@ router.route('/users/:id/designs/:designId')
 router.route('/users/:id/designs/:designId/edit')
   .get(secureRoute, users.editDesign);
 
-router.route('/users/:id/designs/:designId/comments')
-  .post(secureRoute, designs.createComment);
-
-router.route('/users/:id/designs/:designId/comments/:commentId')
-  .delete(secureRoute, designs.deleteComment);
+// router.route('/users/:id/designs/:designId/comments')
+//   .post(secureRoute, designs.createComment);
+//
+// router.route('/users/:id/designs/:designId/comments/:commentId')
+//   .delete(secureRoute, designs.deleteComment);
 
 router.route('/hookup')
   .get(hookup.groupIndex);
