@@ -37,11 +37,12 @@ $(function () {
     var marker = new google.maps.Marker({
       position: latLng,
       map: map,
-      animation: google.maps.Animation.DROP
+      animation: google.maps.Animation.DROP,
+      icon: '../assets/images/marker.png'
     });
 
     marker.addListener('click', function () {
-      markerClick(marker, location);
+      markerClick(marker, data);
     });
   }
 
@@ -72,18 +73,18 @@ $(function () {
     infoWindow.setPosition(pos);
   }
 
-  function markerClick(marker, location) {
+  function markerClick(marker, data) {
     // If there is an open infowindow on the map, close it
     if (infowindow) infowindow.close();
 
     // Locate the data that we need from the individual bike object
-    var name = location.name;
-    var link = location.link;
-    var members = location.members;
+    var name = data.group.name;
+    var link = data.group.urlname;
+    var eventurl = data.event_url;
 
     // Update the infowindow variable to be a new Google InfoWindow
     infowindow = new google.maps.InfoWindow({
-      content: '\n      <div class="infowindow">\n        <h4>' + name + '</h4>\n        <p>Members: ' + members + '</p>\n        <a class="btn" href="' + link + '" target="_blank">Become a Member</a>\n        <a id="specialBtn" class="btn" href="#">Save for later!</a>\n      </div>\n      '
+      content: '\n      <div class="infowindow">\n        <h4>' + name + '</h4>\n        <a class="btn" href="' + eventurl + '" target="_blank">See the Event</a>\n        <a class="btn" href="https://www.meetup.com/' + link + '" target="_blank">Become a Member</a>\n      </div>\n      '
     });
 
     // Finally, open the new InfoWindow

@@ -35,11 +35,12 @@ $(() => {
     const marker = new google.maps.Marker({
       position: latLng,
       map: map,
-      animation: google.maps.Animation.DROP
+      animation: google.maps.Animation.DROP,
+      icon: '../assets/images/marker.png'
     });
 
     marker.addListener('click', () => {
-      markerClick(marker, location);
+      markerClick(marker, data);
     });
   }
 
@@ -70,24 +71,23 @@ $(() => {
     infoWindow.setPosition(pos);
   }
 
-  function markerClick(marker, location) {
+  function markerClick(marker, data) {
     // If there is an open infowindow on the map, close it
     if(infowindow) infowindow.close();
 
 
     // Locate the data that we need from the individual bike object
-    const name = location.name;
-    const link = location.link;
-    const members = location.members;
+    const name = data.group.name;
+    const link = data.group.urlname;
+    const eventurl = data.event_url;
 
     // Update the infowindow variable to be a new Google InfoWindow
     infowindow = new google.maps.InfoWindow({
       content: `
       <div class="infowindow">
         <h4>${name}</h4>
-        <p>Members: ${members}</p>
-        <a class="btn" href="${link}" target="_blank">Become a Member</a>
-        <a id="specialBtn" class="btn" href="#">Save for later!</a>
+        <a class="btn" href="${eventurl}" target="_blank">See the Event</a>
+        <a class="btn" href="https://www.meetup.com/${link}" target="_blank">Become a Member</a>
       </div>
       `
     });

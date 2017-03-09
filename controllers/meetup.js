@@ -18,7 +18,7 @@ const groupIndex = (req, res, next) => {
   .then((data) => {
 
     const idArray = data.map((group) => {
-      console.log(group.id);
+      // console.log(group.id);
       return group.id;
     });
 
@@ -35,9 +35,9 @@ const groupIndex = (req, res, next) => {
     });
   })
   .then((data) => {
-    // data.results.forEach((event) => {
-    //   console.log(event.venue);
-    // });
+    data.results.forEach((event) => {
+      console.log(event.event_url);
+    });
     res.render('hookup', {data: data.results});
     // res.end();
   })
