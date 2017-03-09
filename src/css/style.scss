@@ -252,13 +252,17 @@ body {
     padding: 5px 10px;
     margin-bottom: 4%;
     width: 100%;
-    small {
-      text-indent: 10px;
+    p {
+      display: block;
+    }
+    .small {
+      font-size: 14px;
     }
   }
   #content {
     width: 100%;
   }
+
 }
 
 // ------------     FORM    ------------
