@@ -3,6 +3,7 @@ const oauth = require('../config/oauth');
 const User = require('../models/user');
 
 function github(req, res, next) {
+  console.log(oauth.github);
   return rp({
     method: 'POST',
     url: oauth.github.accessTokenURL,
@@ -14,7 +15,6 @@ function github(req, res, next) {
     json: true
   })
   .then((token) => {
-    console.log('Got token', token);
     return rp({
       method: 'GET',
       url: oauth.github.profileURL,
