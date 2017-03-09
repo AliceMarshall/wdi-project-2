@@ -92,7 +92,7 @@ function createDesignRoute(req, res, next) {
 function showDesignRoute(req, res, next) {
   User
     .findById(req.params.id)
-    .populate('design.comments.createdBy')
+    .populate('createdBy designs.comments.createdBy')
     .exec()
     .then((user) => {
       if(!user) return res.notFound();

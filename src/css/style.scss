@@ -5,6 +5,39 @@ $brand-color: #8BC0C8;
 $main-color: #4a919c;
 $black: #000;
 
+nav {
+  margin-top: -10%;
+  height: 70px;
+  background-color: $brand-color;
+  letter-spacing: 1px;
+  font-size: 20px;
+  color: $white;
+  z-index: 1;
+  top: 0;
+  img {
+    height: 50px;
+    float: left;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: -10%;
+    z-index: 2;
+    li {
+      display: inline-block;
+      float: right;
+      &:first-of-type {
+        margin-right: 7%;
+      }
+      a {
+        color: white;
+        font-weight: bold;
+        position: relative;
+      }
+    }
+  }
+}
+
 body {
   font-family: 'Dosis', sans-serif;
   background-color: aliceblue;
@@ -21,34 +54,38 @@ body {
   letter-spacing: 1px;
 }
 
+.btn-left {
+
+}
+
 // ------------     NAV     ------------
 
-.navbar {
-  padding: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  height: 60px;
-  background-color: $brand-color;
-  letter-spacing: 1px;
-  font-size: 20px;
-  color: $white;
-  img {
-    height: 50px;
-    float: left;
-  }
-  ul {
-    text-align: center;
-    li {
-      padding: 0px 10px;
-      a {
-          color: white;
-      }
-    }
-  }
-}
+// .navbar {
+//   padding: none;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: 2;
+//   height: 60px;
+//   background-color: $brand-color;
+//   letter-spacing: 1px;
+//   font-size: 20px;
+//   color: $white;
+//   img {
+//     height: 50px;
+//     float: left;
+//   }
+//   ul {
+//     text-align: center;
+//     li {
+//       padding: 0px 10px;
+//       a {
+//           color: white;
+//       }
+//     }
+//   }
+// }
 
 // ------------     HOME    ------------
 
@@ -61,7 +98,7 @@ body {
   height: 100vh;
   width: 100%;
   position: absolute;
-  margin-top: -10%;
+  margin-top: 0;
   h1 {
     font-size: 70px;
     color: $white;
@@ -79,15 +116,16 @@ body {
 // ------------     ABOUT     ------------
 
 .about-page {
+  margin-top: 5%;
   background-color: aliceblue;
   height: 100vh;
   letter-spacing: 1px;
   img {
     margin-bottom: 10%;
   }
-  div .col-md-4 {
+  div .col-md-6 {
     border-right: 1px solid $main-color;
-    padding: 2%;
+    padding: 2% 4%;
     &:last-of-type {
       border: none;
     }
@@ -107,6 +145,7 @@ body {
 // ------------     FIND A USER     ------------
 
 .users-page {
+  margin-top: 5%;
   a:hover {
     text-decoration: none;
     color: $brand-color;
@@ -136,6 +175,7 @@ body {
 // ------------     USER PROFILE     ------------
 
 .user-profile {
+  margin-top: 5%;
   a:hover {
     text-decoration: none;
     color: $brand-color;
@@ -166,6 +206,7 @@ body {
 
 
 .design-page {
+  margin-top: 5%;
   a:hover {
     text-decoration: none;
     color: $brand-color;
@@ -205,6 +246,16 @@ body {
   .design-section {
     padding-left: 3%;
   }
+  .comment-box {
+    border: 2px solid $brand-color;
+    background-color: white;
+    padding: 5px 10px;
+    margin-bottom: 4%;
+    width: 100%;
+    small {
+      text-indent: 10px;
+    }
+  }
   #content {
     width: 100%;
   }
@@ -213,6 +264,7 @@ body {
 // ------------     FORM    ------------
 
 .form-page {
+  margin-top: 5%;
   .col-md-4 {
     border: 2px solid $brand-color;
     background-color: white;
@@ -261,4 +313,14 @@ body {
   height: 100vh;
   background-color: $brand-color;
   margin: -10% 0 -5%;
+}
+
+
+// ------------     RESPONSIVE     ------------
+
+@media only screen and (max-width: 992px) {
+
+
+
+
 }
