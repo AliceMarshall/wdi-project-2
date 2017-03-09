@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const designSchema = require('./design');
+const s3 = require('../lib/s3');
 
 // const imageSchema = new mongoose.Schema({
 //   filename: { type: String },
@@ -18,7 +19,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String },
   password: { type: String },
   profileImage: { type: String },
-  designs: [ designSchema.schema ],
+  designs: [ designSchema ],
   githubId: { type: Number },
   facebookId: { type: String }
 });
@@ -30,7 +31,9 @@ userSchema.virtual('profileImageSRC')
     return `https://s3-eu-west-1.amazonaws.com/wdi-ldn-project-2/${this.profileImage}`;
   });
 
-
+userSchema.pre('remove', function removeImage(next) {
+  s3.deleteObject({ Key: this.profileImage }, next);
+});
 
 userSchema
   .virtual('passwordConfirmation')

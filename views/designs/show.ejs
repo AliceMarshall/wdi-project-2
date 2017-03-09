@@ -1,58 +1,62 @@
-<div class="container">
+<div class="container design-page">
   <div class="row">
-    <% if(locals.isAuthenticated && locals.loggedInUser.id === user.id) { %>
-      <p>hello</p>
-    <% } %>
-  </div>
-
-  <a href="/users/<%= user.id %>/designs/<%= design.id %>/edit" class="btn show-btn">Edit Design</a>
-  <form method="POST" action="/users/<%= user.id %>/designs/<%= design.id %>" class="show-btn">
-    <input type="hidden" name="_method" value="DELETE">
-    <button class="btn">Delete Design</button>
-  </form>
-  <div class="col-md-6">
-    <h2><%= design.name %></h2>
-    <h4><%= design.technique %></h4>
-    <p>
-      <%= design.size %>
-    </p>
-    <p>
-      <% while(design.difficulty--) { %> &star; <% } %>
-    </p>
-  </div>
-  <div class="row">
-    <img src="<%= design.image %>" alt="<%= design.name %>" class="show-image">
-  </div>
-  <div class="row">
-    <section class="col-md-6">
-      <h2>Comments</h2>
+    <div class="col-md-6 design-title">
+      <h2><%= design.name %></h2>
+      <div class="row">
+        <div class="col-md-5">
+          <h4>Techinique Used:</h4>
+        </div>
+        <div class="col-md-7">
+          <h4><%= design.technique %></h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <h5>Needle/Hook Size:</h5>
+        </div>
+        <div class="col-md-7">
+          <h5><%= design.size %></h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <h5>Skill Level:</h5>
+        </div>
+        <div class="col-md-7">
+          <h5><%= design.difficulty %></h5>
+        </div>
+      </div>
+      <% if(locals.isAuthenticated && locals.loggedInUser.id === user.id) { %>
+        <a href="/users/<%= user.id %>/designs/<%= design.id %>/edit" class="btn show-btn">Edit Design</a>
+        <form method="POST" action="/users/<%= user.id %>/designs/<%= design.id %>" class="show-btn">
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="btn">Delete Design</button>
+        </form>
+      <% } %>
+      <h3>Comments</h3>
       <% design.comments.forEach((comment) => { %>
         <p><%= comment.content %></p>
         <small><%= comment.createdBy.username %></small>
 
-        <% if(locals.isAuthenticated && comment.ownedBy(user)) { %>
-          <form method="POST" action="/designs/<%= design.id %>/comments/<%= comment.id %>">
+        <% if(locals.isAuthenticated && comment.ownedBy(locals.loggedInUser)) { %>
+          <form method="POST" action="/users/<%= user.id %>/designs/<%= design.id %>/comments/<%= comment.id %>">
             <input type="hidden" name="_method" value="DELETE">
             <button>Delete</button>
           </form>
         <% } %>
-
       <% }) %>
-    </section>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
+      <div>
+        <% if(locals.isAuthenticated) { %>
+          <section>
+            <h4>Leave a Comment</h4>
+            <form method="POST" action="/users/<%= user.id %>/designs/<%= design.id %>/comments">
+              <textarea name="content" id="content" placeholder="Comment"></textarea></br>
+              <button class="btn">Post Comment</button>
+            </form>
+          </section>
+        <% } %>
+      </div>
     </div>
-    <div class="col-md-6">
-      <% if(locals.isAuthenticated) { %>
-        <section>
-          <h4>Leave a comment</h4>
-          <form method="POST" action="/designs/<%= design.id %>/comments">
-            <textarea name="content" id="content" placeholder="Comment"></textarea></br>
-            <button class="btn">Leave a comment</button>
-          </form>
-        </section>
-      <% } %>
-    </div>
+    <div class="col-md-6 design" style="background-image:url(<%= design.imageSRC %>)"></div>
   </div>
 </div>

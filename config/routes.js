@@ -27,17 +27,17 @@ router.route('/users/:id/designs/new')
 
 router.route('/users/:id/designs/:designId')
   .get(users.showDesign)
-  .put(secureRoute, users.updateDesign);
-  // .delete(users.deleteDesign);
+  .put(secureRoute, users.updateDesign)
+  .delete(secureRoute, users.deleteDesign);
 
 router.route('/users/:id/designs/:designId/edit')
   .get(secureRoute, users.editDesign);
 
-// router.route('/users/:id/designs/:designId/comments')
-//   .post(secureRoute, designs.createComment);
+router.route('/users/:id/designs/:designId/comments')
+  .post(secureRoute, users.createComment);
 //
-// router.route('/users/:id/designs/:designId/comments/:commentId')
-//   .delete(secureRoute, designs.deleteComment);
+router.route('/users/:id/designs/:designId/comments/:commentId')
+  .delete(secureRoute, users.deleteComment);
 
 router.route('/hookup')
   .get(hookup.groupIndex);

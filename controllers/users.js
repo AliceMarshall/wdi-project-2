@@ -109,6 +109,7 @@ function createDesignRoute(req, res, next) {
 function showDesignRoute(req, res, next) {
   User
     .findById(req.params.id)
+    .populate('design.comments.createdBy')
     .exec()
     .then((user) => {
       if(!user) return res.notFound();
@@ -150,7 +151,57 @@ function updateDesignRoute(req, res, next) {
     });
 }
 
+function deleteDesignRoute(req, res, next) {
+  User
+    .findById(req.params.id)
+    .exec()
+    .then((user) => {
+      if(!user) return res.notFound();
+      user.designs.pull(req.params.designId);
+      return user.save();
+    })
+    .then((user) => {
+      console.log('REMOVED', user);
+      res.redirect(`/users/${user.id}`);
+    })
+    .catch(next);
+}
 
+
+
+function deleteCommentRoute(req, res, next) {
+  User
+    .findById(req.params.id)
+    .exec()
+    .then((user) => {
+      if (!user) return res.notFound();
+      const design = user.designs.id(req.params.designId);
+      const comment = design.comments.id(req.params.commentId);
+
+      comment.remove();
+      return user.save();
+    })
+    .then(() => res.redirect(`/users/${req.params.id}/designs/${req.params.designId}`))
+    .catch(next);
+}
+
+function createCommentRoute(req, res, next) {
+
+  req.body.createdBy = req.user;
+
+  User
+    .findById(req.params.id)
+    .exec()
+    .then((user) => {
+      if(!user) return res.notFound();
+      const design = user.designs.id(req.params.designId);
+
+      design.comments.push(req.body);
+      return user.save();
+    })
+    .then(() => res.redirect(`/users/${req.params.id}/designs/${req.params.designId}`))
+    .catch(next);
+}
 module.exports = {
   indexUser: indexRoute,
   showUser: showRoute,
@@ -163,5 +214,8 @@ module.exports = {
   createDesign: createDesignRoute,
   showDesign: showDesignRoute,
   editDesign: editDesignRoute,
-  updateDesign: updateDesignRoute
+  updateDesign: updateDesignRoute,
+  deleteDesign: deleteDesignRoute,
+  createComment: createCommentRoute,
+  deleteComment: deleteCommentRoute
 };

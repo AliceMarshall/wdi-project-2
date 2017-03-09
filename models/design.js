@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const s3 = require('../lib/s3');
 
 const commentSchema = new mongoose.Schema({
   content: { type: String, required: true },
@@ -8,15 +9,17 @@ const commentSchema = new mongoose.Schema({
 });
 
 commentSchema.methods.ownedBy = function ownedBy(user) {
-  return this.createdBy.id === user.id;
+  if(typeof this.createdBy.id === 'string') return this.createdBy.id === user.id;
+  return user.id === this.createdBy.toString();
 };
+
 
 const designSchema = new mongoose.Schema({
   name: { type: String, required: true },
   technique: { type: String, required: true },
-  image: { type: String },
-  difficulty: { type: Number },
-  size: { type: String },
+  image: { type: String, required: true },
+  difficulty: { type: String, required: true },
+  size: { type: String, required: true },
   comments: [ commentSchema ]
 });
 
@@ -27,4 +30,8 @@ designSchema.virtual('imageSRC')
     return `https://s3-eu-west-1.amazonaws.com/wdi-ldn-project-2/${this.image}`;
   });
 
-module.exports = mongoose.model('Design', designSchema);
+designSchema.pre('remove', function removeImage(next) {
+  s3.deleteObject({ Key: this.image }, next);
+});
+
+module.exports = designSchema;

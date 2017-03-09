@@ -1,9 +1,27 @@
-<h1><%= user.username %></h1>
-
-<a href="/users/<%= user.id %>/designs/new">New design</a>
-
-<% user.designs.forEach((design) => { %>
-  <a href="/users/<%= user.id %>/designs/<%= design.id %>">
-    <img src="<%= design.imageSRC %>" alt="<%= design.name %>" class="show-image">
-  </a>
-<% }) %>
+<div class="container user-profile">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="user" style="background-image:url(<%= user.profileImageSRC %>)"></div>
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <h1><%= user.username %></h1>
+      </div>
+      <div class="row">
+        <% if(locals.isAuthenticated && locals.loggedInUser.id === user.id) { %>
+          <a href="/users/<%= user.id %>/designs/new" class="btn">Create New Project</a>
+        <% } %>  
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <% user.designs.forEach((design) => { %>
+      <div class="col-md-4">
+        <a href="/users/<%= user.id %>/designs/<%= design.id %>">
+          <div class="user" style="background-image:url(<%= design.imageSRC %>)">
+          </div>
+        </a>
+      </div>
+    <% }) %>
+  </div>
+</div>

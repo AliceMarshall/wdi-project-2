@@ -3,8 +3,9 @@
     <% users.forEach((user) => { %>
       <div class="col-md-4">
         <a href="/users/<%= user.id %>">
-          <img src="<%= user.profileImageSRC %>">
-          <h2><%= user.username %></h2>
+          <div class="user" style="background-image:url(<%= user.profileImageSRC %>)">
+          </div>
+            <h2><%= user.username %></h2>
         </a>
       </div>
     <% }) %>
