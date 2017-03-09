@@ -89,23 +89,6 @@ function createDesignRoute(req, res, next) {
     .catch(next);
 }
 
-// function createImageRoute(req, res, next) {
-//   if(req.file) req.body.filename = req.file.key;
-//
-//   req.body = Object.assign({}, req.body);
-//
-//   req.user.profileImages.push(req.body);
-//
-//   req.user
-//     .save()
-//     .then(() => res.redirect('/users'))
-//     .catch((err) => {
-//       console.log(err);
-//       if(err.name === 'ValidationError') return res.badRequest('/users/images/new', err.toString());
-//       next(err);
-//     });
-// }
-
 function showDesignRoute(req, res, next) {
   User
     .findById(req.params.id)
@@ -138,6 +121,8 @@ function updateDesignRoute(req, res, next) {
       if(!user) return res.notFound();
       const design = user.designs.id(req.params.designId);
 
+      if(!req.body.image) delete req.body.image;
+
       for(const field in req.body) {
         design[field] = req.body[field];
       }
@@ -146,7 +131,7 @@ function updateDesignRoute(req, res, next) {
     })
     .then(() => res.redirect(`/users/${req.params.id}/designs/${req.params.designId}`))
     .catch((err) => {
-      if(err.name === 'ValidationError') return res.badRequest(`/users/${req.params.id}/designs/${req.params.id}/edit`, err.toString());
+      if(err.name === 'ValidationError') return res.badRequest(`/users/${req.params.id}/designs/${req.params.designId}/edit`, err.toString());
       next(err);
     });
 }
@@ -166,8 +151,6 @@ function deleteDesignRoute(req, res, next) {
     })
     .catch(next);
 }
-
-
 
 function deleteCommentRoute(req, res, next) {
   User

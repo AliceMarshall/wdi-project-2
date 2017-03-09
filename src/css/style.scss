@@ -202,11 +202,17 @@ body {
     display: inline-block;
     margin-right: 2%;
   }
+  .design-section {
+    padding-left: 3%;
+  }
+  #content {
+    width: 100%;
+  }
 }
 
-// ------------     LOGIN / REGISTER     ------------
+// ------------     FORM    ------------
 
-.login-page {
+.form-page {
   .col-md-4 {
     border: 2px solid $brand-color;
     background-color: white;
@@ -239,6 +245,9 @@ body {
     }
   }
   #profileImage {
+    display: none;
+  }
+  #image {
     display: none;
   }
   .btn {

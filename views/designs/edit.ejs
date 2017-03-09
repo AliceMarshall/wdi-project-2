@@ -1,30 +1,34 @@
-<div class="container">
-  <h2>Edit <%= design.name %></h2>
+<div class="container form-page">
+  <div class="row justify-content-md-center">
+    <div class="col-md-4 col-md-auto">
+      <h2>Edit</h2>
 
-  <form method="POST" action="/users/<%= user.id %>/designs/<%= design.id %>">
-    <input type="hidden" name="_method" value="PUT">
+      <form method="POST" action="/users/<%= user.id %>/designs/<%= design.id %>">
+        <input type="hidden" name="_method" value="PUT">
 
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" value="<%= design.name %>" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="technique">Technique</label>
-      <input type="text" name="technique" id="technique" value="<%= design.technique %>" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="image">Image</label>
-      <input type="text" name="image" id="image" value="<%= design.image %>" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="difficulty">Difficulty</label>
-      <input type="text" name="difficulty" id="difficulty" value="<%= design.difficulty %>" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="size">Needle/Hook Size</label>
-      <input type="text" name="size" id="size" value="<%= design.size %>" class="form-control">
-    </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" value="<%= design.name %>" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="technique">Technique</label>
+          <input type="text" name="technique" id="technique" value="<%= design.technique %>" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="image" class="btn">IMAGE</label>
+          <input type="file" name="image" id="image" value="<%= design.image %>" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="difficulty">Difficulty</label>
+          <input type="text" name="difficulty" id="difficulty" value="<%= design.difficulty %>" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="size">Needle/Hook Size</label>
+          <input type="text" name="size" id="size" value="<%= design.size %>" class="form-control">
+        </div>
 
-    <button class="btn">Update</button>
-  </form>
+        <button class="btn">UPDATE</button>
+      </form>
+    </div>
+  </div>
 </div>

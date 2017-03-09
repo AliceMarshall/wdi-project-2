@@ -1,6 +1,7 @@
 <div class="container design-page">
   <div class="row">
-    <div class="col-md-6 design-title">
+    <div class="col-md-6 design" style="background-image:url(<%= design.imageSRC %>)"></div>
+    <div class="col-md-6 design-section">
       <h2><%= design.name %></h2>
       <div class="row">
         <div class="col-md-5">
@@ -57,6 +58,5 @@
         <% } %>
       </div>
     </div>
-    <div class="col-md-6 design" style="background-image:url(<%= design.imageSRC %>)"></div>
   </div>
 </div>
