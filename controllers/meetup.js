@@ -35,9 +35,9 @@ const groupIndex = (req, res, next) => {
     });
   })
   .then((data) => {
-    data.results.forEach((event) => {
-      console.log(event.venue);
-    });
+    // data.results.forEach((event) => {
+    //   console.log(event.venue);
+    // });
     res.render('hookup', {data: data.results});
     // res.end();
   })

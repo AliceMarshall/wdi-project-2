@@ -8,9 +8,13 @@ $black: #000;
 body {
   font-family: 'Dosis', sans-serif;
   background-color: aliceblue;
+  padding-top: 10%;
 }
 
+// ------------     NAV     ------------
+
 .navbar {
+  padding: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -36,6 +40,8 @@ body {
   }
 }
 
+// ------------     HOME    ------------
+
 .home-page {
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('/assets/images/knitting1.jpg');
   -webkit-background-size: cover;
@@ -56,16 +62,16 @@ body {
     letter-spacing: 2px;
     word-spacing: 20px;
     text-align: center;
-
   }
 }
+
+// ------------     ABOUT     ------------
 
 .about-page {
   background-color: aliceblue;
   height: 100vh;
   letter-spacing: 1px;
   img {
-    margin-top: 10%;
     margin-bottom: 10%;
   }
   div .col-md-4 {
@@ -75,9 +81,6 @@ body {
       border: none;
     }
   }
-  // h3 {
-  //   text-align: center;
-  // }
   h5 {
     text-align: justify;
     a {
@@ -88,10 +91,20 @@ body {
       }
     }
   }
+}
 
+// ------------     FIND A USER     ------------
+
+.users-page {
+
+  img {
+    height: 300px;
+  }
 }
 
 
+
+// ------------     HOOK UP     ------------
 
 #map {
   height: 100vh;

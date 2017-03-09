@@ -33,11 +33,28 @@ User
       }
     ]
   }, {
-    firstName: 'Hannah',
-    lastName: 'Marshall',
-    profileImage: 'https://scontent.xx.fbcdn.net/v/t1.0-9/14192071_10157521154220151_3305327912080496122_n.jpg?oh=5852027876fada12c8a375153812be53&oe=5931C8F8',
-    username: 'HannahMarshall',
-    email: 'han@gmail.com',
+    firstName: 'Sarah',
+    lastName: 'Towers',
+    profileImage: 'https://scontent.xx.fbcdn.net/v/t1.0-9/13177265_1243070935711042_6754585434974686438_n.jpg?oh=15970e84636420d969e95b6599d89a4c&oe=59639293',
+    username: 'SarahTowers',
+    email: 'sarah@gmail.com',
+    password: 'password',
+    passwordConfirmation: 'password',
+    designs: [
+      {
+        name: 'Cable Jumper',
+        technique: 'Knitting',
+        image: 'http://www.knitya.com/wp-content/uploads/2015/11/cable-knit-jumper-3.jpg',
+        difficulty: 2,
+        size: '4.5mm Circular Needles'
+      }
+    ]
+  }, {
+    firstName: 'Hayden',
+    lastName: 'Crosweller',
+    profileImage: 'https://scontent.xx.fbcdn.net/v/t31.0-8/13497713_10201872763978802_4059869018508169133_o.jpg?oh=fb95b5a203c19d759f72dce14ac12a28&oe=592E494D',
+    username: 'IAmHayden',
+    email: 'hayden@gmail.com',
     password: 'password',
     passwordConfirmation: 'password',
     designs: [
