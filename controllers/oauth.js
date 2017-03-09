@@ -3,7 +3,6 @@ const oauth = require('../config/oauth');
 const User = require('../models/user');
 
 function github(req, res, next) {
-  console.log(oauth.github);
   return rp({
     method: 'POST',
     url: oauth.github.accessTokenURL,
@@ -52,7 +51,7 @@ function github(req, res, next) {
 }
 
 function facebook(req, res, next) {
-  console.log(req.query);
+  console.log(oauth.facebook);
   return rp({
     method: 'GET',
     url: oauth.facebook.accessTokenURL,
