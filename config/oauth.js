@@ -18,7 +18,7 @@ module.exports = {
     profileURL: 'http://api.facebook.com/user',
     clientId: process.env.PROJECT2_FB_CLIENT_ID,
     clientSecret: process.env.PROJECT2_FB_CLIENT_SECRET,
-    redirectURI: env === 'production' ? 'https://evening-crag-17922.herokuapp.com/oauth/facebook' : 'http://localhost:3000/oauth/facebook',
+    redirectURI: env === 'production' ? 'https://evening-crag-17922.herokuapp.com/oauth/facebook/' : 'http://localhost:3000/oauth/facebook/',
     getLoginURL() {
       return `${this.loginURL}?client_id=${this.clientId}&redirect_uri=${this.redirectURI}`;
     }
