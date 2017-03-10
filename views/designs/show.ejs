@@ -34,39 +34,38 @@
           <button class="btn">Delete Design</button>
         </form>
       <% } %>
+
+      <div class="row">
+        <h3>Comments</h3>
+      </div>
+        <% design.comments.forEach((comment) => { %>
+          <div class="row">
+          <div class="col"
+            <p><%= comment.content %></p>
+            <small>Comment from: <%= comment.createdBy.username %></small>
+          </div>
+          <div class="col">
+            <% if(locals.isAuthenticated && comment.ownedBy(locals.loggedInUser)) { %>
+              <form method="POST" action="/users/<%= user.id %>/designs/<%= design.id %>/comments/<%= comment.id %>">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="btn btn-left">Delete Comment</button>
+              </form>
+            <% } %>
+          </div>
+          </div>
+        <% }) %>
+
     </div>
   </div>
-  <div class="row">
-    <h3>Comments</h3>
-  </div>
-  <div class="row comment-box">
-    <% design.comments.forEach((comment) => { %>
-      <div class="col-md-10">
-        <p><%= comment.content %></p>
-        <small>Comment from: <%= comment.createdBy.username %></small>
-      </div>
-      <div class="col-md-2">
-        <% if(locals.isAuthenticated && comment.ownedBy(locals.loggedInUser)) { %>
-          <form method="POST" action="/users/<%= user.id %>/designs/<%= design.id %>/comments/<%= comment.id %>">
-            <input type="hidden" name="_method" value="DELETE">
-            <button class="btn btn-left">Delete Comment</button>
-          </form>
-        <% } %>
-      </div>
-    <% }) %>
-  </div>
 
-
-    <% if(locals.isAuthenticated) { %>
-      <div class="row">
-        <h4>Leave a Comment</h4>
-      </div>
-      <div class="row"
-        <form method="POST" action="/users/<%= user.id %>/designs/<%= design.id %>/comments">
-          <textarea name="content" id="content" placeholder="Comment"></textarea>
-          <button class="btn">Post Comment</button>
-        </form>
-      </div>
-    <% } %>
+  <% if(locals.isAuthenticated) { %>
+    <div class="row">
+      <h4>Leave a Comment</h4>
+    </div>
+      <form method="POST" action="/users/<%= user.id %>/designs/<%= design.id %>/comments">
+        <textarea name="content" id="content" placeholder="Comment"></textarea>
+        <button class="btn">Post Comment</button>
+      </form>
+  <% } %>
 
 </div>

@@ -35,7 +35,7 @@ router.route('/users/:id/designs/:designId/edit')
 
 router.route('/users/:id/designs/:designId/comments')
   .post(secureRoute, users.createComment);
-//
+
 router.route('/users/:id/designs/:designId/comments/:commentId')
   .delete(secureRoute, users.deleteComment);
 
