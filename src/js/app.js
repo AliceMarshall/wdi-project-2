@@ -13,6 +13,7 @@ $(() => {
 
   function initMap() {
     map = new google.maps.Map($map.get(0), {
+      center: { lat: 51.512504, lng: -0.128914 },
       zoom: 13,
       scrollwheel: false,
       // Map styles are stored in another .js file - which is required above the app.js and is available inside this file
