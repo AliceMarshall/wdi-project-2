@@ -21,7 +21,6 @@ Logged In users can create a profile, including upload a profile image. They can
 
 - JavaScript, Express, MongoDB, Node.js, HTML5, CSS, jQuery were used to create the application.
 - Pictures are base64 encoded and stored using the AWS S3 service.
-- Authentication uses JWT with Satellizer and BCrypt.
 - The Google Web Font 'Dosis' has been used to style the application.
 - [***LogoMakr***](https://logomakr.com/) was used to create the sites logo and favicon.
 
